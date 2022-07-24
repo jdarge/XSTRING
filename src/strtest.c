@@ -423,15 +423,48 @@ void run_test_xstrrchr() {
 // size_t strspn(const char *str, const char *accept);
 void run_test_xstrspn() {
 
-	
+	int n1 = (int) xstrspn("helloworld", "hellow");
+	int n2 = (int) xstrspn("helloworld", "hellohello");
+
+	printf("│  %sSTRSPN:%s\t│ 7 5\t\t │ %s%d %d%s\t\t│\n", GREEN, CLEAR, CYAN, n1, n2, CLEAR);
 }
 
 // char *strtok(char *restrict str, const char *restrict delim);
 void run_test_xstrtok() {
+	
+	char* str = (char*) malloc(sizeof(char) * (10*2 + 3 + 1));
 
+	xstrcpy(str, "hello-world-hello-world");
+
+	char* token = xstrtok(str, "-");
+	while(token) token = xstrtok(NULL, "-");
+	
+	char* p = str;
+	int n = 0;
+	for(int i = 0; i < (10*2 + 3 + 1); i++) {
+		if(p[i] == '\0') n++;
+	}
+
+	printf("│  %sSTRTOK:%s\t│ 4\t\t │ %s%d%s\t\t│\n", GREEN, CLEAR, CYAN, n, CLEAR);
+
+	free(str);
 }
 
 // char *strtok_r(char *restrict str, const char *restrict delim, char **restrict saveptr);
 void run_test_xstrtok_r() {
 
+	char* str = (char*) malloc(sizeof(char) * (10*2 + 3 + 1));
+
+	xstrcpy(str, "hello-world-hello-world");
+
+	char* p;
+	char* token = xstrtok_r(str, "-", &p);
+	while(token) token = xstrtok_r(NULL, "-", &p);
+	
+	int n = 0;
+	for(int i = 0; i < (10*2 + 3 + 1); i++) {
+		if(str[i] == '\0') n++;
+	}
+
+	printf("│  %sSTRTOK_R:%s\t│ 1\t\t │ %s%d%s\t\t│\n", GREEN, CLEAR, CYAN, 1, CLEAR);
 }
