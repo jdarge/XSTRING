@@ -12,13 +12,13 @@ RETURN VALUE
 */
 void *xmemccpy(void *restrict dest, const void *restrict src, int c, size_t n) {
 
-	unsigned char *d = (unsigned char *) dest;
-	unsigned char *s = (unsigned char *) src;
+    unsigned char *d = (unsigned char *) dest;
+    unsigned char *s = (unsigned char *) src;
 
-	while(n-- && (*d++ = *s++) != c);
+    while (n-- && (*d++ = *s++) != c);
 
-	if(n) return d + 1;
-	return 0;
+    if (n) return d + 1;
+    return 0;
 }
 
 /*
@@ -33,28 +33,28 @@ RETURN VALUE
 */
 void *xmemchr(const void *src, int c, size_t n) {
 
-	unsigned char* s = (unsigned char*) src;
+    unsigned char *s = (unsigned char *) src;
 
-	while(n--) {
-		if((unsigned char) c == *s++) {
-			return (void*) (s-1);
-		}
-	}
+    while (n--) {
+        if ((unsigned char) c == *s++) {
+            return (void *) (s - 1);
+        }
+    }
 
-	return NULL;
+    return NULL;
 }
 
 void *xmemrchr(const void *src, int c, size_t n) {
 
-	unsigned char* s = (unsigned char*) src;
+    unsigned char *s = (unsigned char *) src;
 
-	while(n--) {
-		if((unsigned char) c == s[n]) {
-			return (void*) (s+n);
-		}
-	}
+    while (n--) {
+        if ((unsigned char) c == s[n]) {
+            return (void *) (s + n);
+        }
+    }
 
-	return NULL;
+    return NULL;
 }
 
 /*
@@ -72,18 +72,18 @@ RETURN VALUE
 
 	If n is zero, the return value is zero.
 */
-int xmemcmp(const void *mem_p1, const void * mem_p2, size_t n) {
+int xmemcmp(const void *mem_p1, const void *mem_p2, size_t n) {
 
-	int ret = 0;
+    int ret = 0;
 
-	unsigned char *t_p1 = (unsigned char *) mem_p1;
-	unsigned char *t_p2 = (unsigned char *) mem_p2;
+    unsigned char *t_p1 = (unsigned char *) mem_p1;
+    unsigned char *t_p2 = (unsigned char *) mem_p2;
 
-	for(; n > 0; n--) {
-		if((ret = *t_p1 - *t_p2)) break;
-	}
+    for (; n > 0; n--) {
+        if ((ret = *t_p1 - *t_p2)) break;
+    }
 
-	return ret;
+    return ret;
 }
 
 /*
@@ -96,14 +96,14 @@ RETURN VALUE
 */
 void *xmemcpy(void *restrict dest, const void *restrict src, size_t n) {
 
-	unsigned char *d = (unsigned char *) dest;
-	unsigned char *s = (unsigned char *) src;
+    unsigned char *d = (unsigned char *) dest;
+    unsigned char *s = (unsigned char *) src;
 
-	for(size_t i = 0; i < n; i++) {
-		*d++ = *s++;
-	}
+    for (size_t i = 0; i < n; i++) {
+        *d++ = *s++;
+    }
 
-	return dest; 
+    return dest;
 }
 
 /*
@@ -118,17 +118,18 @@ RETURN VALUE
 */
 void *xmemmove(void *dest, const void *src, size_t n) {
 
-	char* d = (char*) dest;
-	char* s = (char*) src;
+    char *d = (char *) dest;
+    char *s = (char *) src;
 
-	if(dest <= src) {
-		while(n--) *d++ = *s++;
-	} else {
-		d += n; s += n;
-		while(n--) *--d = *--s;
-	}
+    if (dest <= src) {
+        while (n--) *d++ = *s++;
+    } else {
+        d += n;
+        s += n;
+        while (n--) *--d = *--s;
+    }
 
-	return dest;
+    return dest;
 }
 
 /*
@@ -141,11 +142,11 @@ RETURN VALUE
 */
 void *xmemset(void *mem_p, int i, size_t n) {
 
-	char* p = (char*) mem_p;
+    char *p = (char *) mem_p;
 
-	while(n--) *p++ = i;
+    while (n--) *p++ = (char) i;
 
-	return mem_p;
+    return mem_p;
 }
 
 /*
@@ -160,9 +161,9 @@ RETURN VALUE
 */
 char *xstpcpy(char *restrict dest, const char *restrict src) {
 
-	while((*dest++ = *src++));
+    while ((*dest++ = *src++));
 
-	return dest - 1;
+    return dest - 1;
 }
 
 /*
@@ -183,10 +184,10 @@ RETURN VALUE
 */
 char *xstpncpy(char *restrict dest, const char *restrict src, size_t n) {
 
-	while(n-- && (*dest++ = *src++));
-	xmemset(dest, 0, 1);// not sure about this 
+    while (n-- && (*dest++ = *src++));
+    xmemset(dest, 0, 1);// not sure about this
 
-	return dest;
+    return dest;
 }
 
 /*
@@ -204,12 +205,12 @@ RETURN VALUE
 */
 char *xstrcat(char *restrict dest, const char *restrict src) {
 
-	char* s = dest;
+    char *s = dest;
 
-	while(*dest) dest++;
-	while((*dest++ = *src++) != '\0');
+    while (*dest) dest++;
+    while ((*dest++ = *src++) != '\0');
 
-	return s;
+    return s;
 }
 
 /*
@@ -226,11 +227,11 @@ RETURN VALUE
 */
 char *xstrchr(const char *str, int c) {
 
-	while (*str != (char) c) {
-		if(*str++ == '\0') return NULL;
-	}
+    while (*str != (char) c) {
+        if (*str++ == '\0') return NULL;
+    }
 
-	return (char*) str;
+    return (char *) str;
 }
 
 /*
@@ -249,19 +250,19 @@ RETURN VALUE
 */
 int xstrcmp(const char *str1, const char *str2) {
 
-	unsigned char str1__;
-	unsigned char str2__;
+    unsigned char str1__;
+    unsigned char str2__;
 
-	do {
+    do {
 
-		str1__ = *str1++;
-		str2__ = *str2++;
+        str1__ = *str1++;
+        str2__ = *str2++;
 
-		if(str1__ - str2__) break;
+        if (str1__ - str2__) break;
 
-	} while (str1__);
+    } while (str1__);
 
-	return (str1__ - str2__);
+    return (str1__ - str2__);
 }
 
 /*
@@ -275,11 +276,11 @@ RETURN VALUE
 */
 char *xstrcpy(char *restrict dest, const char *restrict src) {
 
-	char* s = dest;
+    char *s = dest;
 
-	while((*dest++ = *src++) != '\0');
+    while ((*dest++ = *src++) != '\0');
 
-	return s;
+    return s;
 }
 
 /*
@@ -293,15 +294,15 @@ RETURN VALUE
 */
 size_t xstrcspn(const char *str, const char *reject) {
 
-	size_t count = 0;
+    size_t count = 0;
 
-	for(const char *s = str; *s != '\0'; ++s, ++count) {
-		for(const char *r = reject; *r != '\0'; ++r) {
-				if(*s == *r) return count;
-		}
-	}
+    for (const char *s = str; *s != '\0'; ++s, ++count) {
+        for (const char *r = reject; *r != '\0'; ++r) {
+            if (*s == *r) return count;
+        }
+    }
 
-	return count;
+    return count;
 }
 
 /*
@@ -315,11 +316,11 @@ RETURN VALUE
 */
 char *xstrdup(const char *str) {
 
-	char* str_new = (char*) malloc(xstrlen(str) + 1);
+    char *str_new = (char *) malloc(xstrlen(str) + 1);
 
-	if(!str_new) return NULL;
+    if (!str_new) return NULL;
 
-	return xstrcpy(str_new, str);
+    return xstrcpy(str_new, str);
 }
 
 /*
@@ -332,11 +333,11 @@ RETURN VALUE
 */
 size_t xstrlen(const char *str) {
 
-	const char *s = str;
+    const char *s = str;
 
-	while(*s) s++;
+    while (*s) s++;
 
-	return s-str;
+    return s - str;
 }
 
 /*
@@ -354,19 +355,19 @@ RETURN VALUE
 */
 char *xstrncat(char *restrict dest, const char *restrict src, size_t n) {
 
-	char *s = dest;
+    char *s = dest;
 
-	if(!n) return s;
+    if (!n) return s;
 
-	while(*dest) dest++;
-	while((*dest++ = *src++)) {
-		if(--n == 0) {
-			*dest = '\0';
-			break;
-		}
-	}
+    while (*dest) dest++;
+    while ((*dest++ = *src++)) {
+        if (--n == 0) {
+            *dest = '\0';
+            break;
+        }
+    }
 
-	return s;
+    return s;
 }
 
 /*
@@ -381,22 +382,22 @@ DESCRIPTION
 */
 int xstrncmp(const char *str1, const char *str2, size_t n) {
 
-	unsigned char str1__;
-	unsigned char str2__;
+    unsigned char str1__;
+    unsigned char str2__;
 
-	while(n--) {
+    while (n--) {
 
-		str1__ = *str1++;
-		str2__ = *str2++;
+        str1__ = *str1++;
+        str2__ = *str2++;
 
-		if(str1__ - str2__) {
-			return (str1__ < str2__ ? -1 : 1);
-		}
+        if (str1__ - str2__) {
+            return (str1__ < str2__ ? -1 : 1);
+        }
 
-		if(!str1__) break;
-	}
+        if (!str1__) break;
+    }
 
-	return 0;
+    return 0;
 }
 
 /*
@@ -416,13 +417,13 @@ RETURN VALUE
 */
 char *xstrncpy(char *restrict dest, const char *restrict src, size_t n) {
 
-	char* s = dest;
+    char *s = dest;
 
-	while(n--) {
-		if ((*dest++ = *src++) == '\0') break;
-	}
+    while (n--) {
+        if ((*dest++ = *src++) == '\0') break;
+    }
 
-	return s;
+    return s;
 }
 
 /*
@@ -440,15 +441,15 @@ RETURN VALUE
 */
 char *xstrndup(const char *str, size_t n) {
 
-	size_t s_length = xstrnlen(str, n);
-	char* s = malloc(s_length + 1);
+    size_t s_length = xstrnlen(str, n);
+    char *s = malloc(s_length + 1);
 
-	if(!s) return NULL;
+    if (!s) return NULL;
 
-	xmemcpy(s, str, s_length);
-	s[s_length] = '\0';
+    xmemcpy(s, str, s_length);
+    s[s_length] = '\0';
 
-	return s;
+    return s;
 }
 
 /*
@@ -463,13 +464,13 @@ RETURN VALUE
 */
 size_t xstrnlen(const char *str, size_t maxlen) {
 
-	const char* p = xmemchr(str, 0, maxlen);
+    const char *p = xmemchr(str, 0, maxlen);
 
-	if(p) {
-		return p - str;
-	}
+    if (p) {
+        return p - str;
+    }
 
-	return maxlen;
+    return maxlen;
 }
 
 /*
@@ -483,13 +484,13 @@ RETURN VALUE
 */
 char *xstrpbrk(const char *str, const char *accept) {
 
-	str += xstrcspn(str, accept);
-	
-	if(*str) {
-		return (char*) str;
-	}
+    str += xstrcspn(str, accept);
 
-	return NULL;
+    if (*str) {
+        return (char *) str;
+    }
+
+    return NULL;
 }
 
 /*
@@ -506,7 +507,7 @@ RETURN VALUE
 */
 char *xstrrchr(const char *str, int c) {
 
-	return xmemrchr(str, c, xstrlen(str) + 1);
+    return xmemrchr(str, c, xstrlen(str) + 1);
 }
 
 /*
@@ -520,20 +521,20 @@ RETURN VALUE
 */
 size_t xstrspn(const char *str, const char *accept) {
 
-	size_t count = 0;
+    size_t count = 0;
 
-	const char *s;
-	const char *a;
+    const char *s;
+    const char *a;
 
-	for(s = str; *s != '\0'; ++s, ++count) {
-		for(a = accept; *a != '\0'; ++a) {
-			if(*s == *a) break;
-		}
+    for (s = str; *s != '\0'; ++s, ++count) {
+        for (a = accept; *a != '\0'; ++a) {
+            if (*s == *a) break;
+        }
 
-		if(*a == '\0') return count;
-	}
+        if (*a == '\0') return count;
+    }
 
-	return count;
+    return count;
 }
 
 /*
@@ -575,18 +576,18 @@ RETURN VALUE
 */
 char *xstrtok(char *restrict str, const char *restrict delim) {
 
-	static char* p;
+    static char *p;
 
-	if(!str && !(str=p)) return NULL;
+    if (!str && !(str = p)) return NULL;
 
-	str += xstrspn(str, delim);
-	if(!*str) return NULL;
+    str += xstrspn(str, delim);
+    if (!*str) return NULL;
 
-	p = str + xstrcspn(str, delim);
-	if(*p) *p++ = '\0';
-	else p = '\0';
+    p = str + xstrcspn(str, delim);
+    if (*p) *p++ = '\0';
+    else p = NULL;
 
-	return str;
+    return str;
 }
 
 /*
@@ -642,16 +643,16 @@ RETURN VALUE
 */
 char *xstrtok_r(char *restrict str, const char *restrict delim, char **restrict saveptr) {
 
-	if(!str && !(str = *saveptr)) return NULL;
+    if (!str && !(str = *saveptr)) return NULL;
 
-	str += xstrspn(str, delim);
-	if(!*str) return NULL;
+    str += xstrspn(str, delim);
+    if (!*str) return NULL;
 
-	*saveptr = str + xstrcspn(str, delim);
-	if(**saveptr) *(*saveptr)++ = '\0';
-	else *saveptr = '\0';
+    *saveptr = str + xstrcspn(str, delim);
+    if (**saveptr) *(*saveptr)++ = '\0';
+    else *saveptr = NULL;
 
-	return str;
+    return str;
 }
 
 /*
